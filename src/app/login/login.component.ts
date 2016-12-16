@@ -25,10 +25,8 @@ login() {
 
   logout() {
     this.auth.logout();
+}
 
-
-
-  }
   ngOnInit() {
   }
 
