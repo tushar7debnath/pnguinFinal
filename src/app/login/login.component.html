@@ -1,0 +1,26 @@
+
+
+
+ 
+    <div class="login-container">
+      <div class="login-box">
+        <div>
+          <div class="heading">Project Penguin</div>
+          <div  class="sub-head" style=" text-align: center;">Never loose a sketch file ever again</div>
+        </div>
+        <div><img class="img-box" src="../../assets/images/logo.jpg">
+        </div>
+        <div>
+          <div *ngIf="!((auth.af.auth | async)?.uid == null)" routerLink='/listing' class="button">
+            <div class="button-text">Lets go!</div>
+          </div>
+        <div>
+          <div (click)="login()" *ngIf="((auth.af.auth | async)?.uid == null)" class="button">
+            <div class="button-text">Login</div>
+          </div>
+          <div *ngIf="!((auth.af.auth | async)?.uid == null)" class="sub-head">Not <span class="highlight-text">{{ (auth.af.auth | async)?.google.displayName}}</span>? <span (click)="logout()" class="link">Logout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+ 

@@ -1,0 +1,41 @@
+<app-nav ></app-nav>
+<div class="card-bound">
+        <div class="big-card">
+          
+            <form>
+              <div class="selection-container w-clearfix">
+                <select (change)="postPlatformSelection(platform.value)" #platform class="slection w-select" >
+                  <option value="">Choose Platform</option>
+                  <option  *ngFor="let pp of platformPath | async" value={{pp.$key}}>{{pp.$key}}</option>
+                </select>
+                <select  #lob class="slection w-select">
+                  <option value="">Choose Lob</option>
+                  <option  *ngFor="let lp of lobPath | async" value={{lp.$key}}>{{lp.$key}}</option>
+                </select>
+            </div>
+            
+           
+
+              <select #status class="slection w-select">
+                 <option value=""> Choose Project Status</option>
+                  <option  *ngFor="let sp of statusPath | async" value={{sp.$key}}>{{sp.$key}}</option>
+                </select>
+            
+              
+              
+           
+            <label for="name-2">Project Name:</label>
+              <input #newname class="w-input"  maxlength="256"  placeholder="Enter your name" type="text">
+              <label for="field">Description:</label>
+              <textarea class="w-input" #desc maxlength="5000" name="field" placeholder="Example Text"></textarea>
+
+              <div class="ui field" style="margin-bottom: 20px">
+              <input type="file"  (change)="handleUpload($event)" placeholder="Upload file..."/>
+            </div>
+              
+         </form>  
+
+         <div class="ui field">
+          <button  class="ui primary button" (click)="submit(newname.value, desc.value, platform.value, lob.value, status.value )">Create Project</button>
+        </div>    
+</div>

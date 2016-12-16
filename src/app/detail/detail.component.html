@@ -1,0 +1,45 @@
+<app-nav ></app-nav>
+
+
+      <div class="card-bound">
+        <div class="big-card">
+          <div class="bottom-pad">
+            <div class="big-card-heading">{{ (project | async)?.name }}</div>
+            <div class="bigcard sub-head">{{ (project | async)?.description }}</div>
+          </div>
+          <div class="bottom-pad">
+            <div class="tag-container">
+              <div class="tag">
+                <div>{{ (project | async)?.platform }}</div>
+              </div>
+              <div class="tag">
+                <div>{{ (project | async)?.lob }}</div>
+              </div>
+             
+              <div class="tag">
+                <div>{{ (project | async)?.status }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="big-card">
+          <div class="_30 bottom-pad">
+            <div class="big-card-heading">What do you want to do?</div>
+          </div>
+          <div class="big-card-actionbox w-clearfix" data-content="Click to download">
+            <div (click)="download()" class="action"><img class="action-img" src="../../assets/images/download.png">
+              <div>Download Latest</div>
+            </div>
+            <div class="action"><img class="action-img" src="../../assets/images/edit.png">
+              <div>Edit Project Details</div>
+            </div>
+            <div class="action"><img class="action-img" src="../../assets/images/upload.png">
+              <div>Update Version</div>
+            </div>
+          </div>
+        </div>
+        <div class="big-card">
+          <div class="big-card-text">Last updated to version <span class="name-link">{{ (project | async)?.version }}</span> on <span class="name-link">{{ ((project | async)?.createdOn)| date }}</span> by <span class="name-link">{{ (project | async)?.creatorName }}</span>
+          </div>
+        </div>
+      </div>

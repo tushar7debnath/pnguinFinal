@@ -1,0 +1,56 @@
+<app-nav ></app-nav>
+
+<div class="card-fs">
+  <div  style="margin-top: 10px" class="ui icon input">
+  <input #sr  (change)="search(sr.value)"type="text" placeholder="Search...">
+  <i class="search icon"></i>
+</div>
+
+  
+    <select #platform (change)="postPlatformSelection(platform.value)"  class="ui dropdown dd">
+  <option value="">Platform</option>
+ <option  *ngFor="let pp of platformPath | async" value={{pp.$key}}>{{pp.$key}}</option>
+</select>
+<select #lob (change)="postLobSelection(platform.value,lob.value)"  class="ui dropdown dd">
+  <option value="">Lob</option>
+ <option  *ngFor="let lp of lobPath | async" value={{lp.$key}}>{{lp.$key}}</option>
+</select>
+
+
+<button (click)="reset()" class="ui basic button " style="margin-top: 10px"> Reset</button>
+
+  
+
+</div>
+    
+      <div class="card-bound">
+        
+        <div *ngFor="let projkt of Project | async"  class="card-box w-clearfix" >
+          <div class="card-main" (click)="viewDetail(projkt.$key)">
+            <div class="w-clearfix">
+              <div class="head-sub-container">
+                <div class="card-heading">{{projkt.name }}</div>
+                <div class="card-sub">{{projkt.lob}} {{projkt.flow}}</div>
+              </div>
+              <div class="card-platform">{{projkt.platform}}</div>
+            </div>
+            <div class="card-description">
+              <div>{{projkt.description}}</div>
+            </div>
+            <div>
+<div class="divider"></div>
+            <div class="card-footer-container w-clearfix">
+              <div class="circle {{projkt.status}}"></div>
+              <div class="card-status">{{projkt.status}}</div>
+              <div class="card-date">{{projkt.createdOn | date}}</div>
+            </div>
+            
+
+            </div>
+            
+          </div>
+        </div>
+        
+       </div>
+          
+        
