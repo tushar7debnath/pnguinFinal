@@ -25,7 +25,6 @@ login() {
 
   logout() {
     this.auth.logout();
-    
 
 
 
