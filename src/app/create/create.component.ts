@@ -20,6 +20,7 @@ export class CreateComponent implements OnInit {
 
   public time;
   isCompleted: boolean = true;
+  submitted: boolean = false;
 
   constructor(public ss: StorageService, private ps: ProjectService) {
 
@@ -31,7 +32,7 @@ export class CreateComponent implements OnInit {
   }
 
   postPlatformSelection(pf: string) {
-    console.log('pps' + pf);
+    
     this.lobPath = this.ps.getLobPath(pf);
   }
 
@@ -40,7 +41,9 @@ export class CreateComponent implements OnInit {
   }
 
   submit(nam: string, desc: string, platform: string, lob: string, status: string) {
-    console.log(nam);
+    
+
+    this.submitted = true;
 
     this.ss.uploadFile(this.uploadedFile, nam, desc, platform, lob, status);
     this.isCompleted = false;

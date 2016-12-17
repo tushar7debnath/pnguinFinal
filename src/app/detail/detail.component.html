@@ -9,14 +9,14 @@
           </div>
           <div class="bottom-pad">
             <div class="tag-container">
-              <div class="tag">
+              <div smDirTooltip="platform" smDirPosition="bottom right" class="tag">
                 <div>{{ (project | async)?.platform }}</div>
               </div>
-              <div class="tag">
+              <div smDirTooltip="Line of Business" smDirPosition="bottom center" class="tag">
                 <div>{{ (project | async)?.lob }}</div>
               </div>
              
-              <div class="tag">
+              <div smDirTooltip="Project Status" smDirPosition="bottom left" class="tag">
                 <div>{{ (project | async)?.status }}</div>
               </div>
             </div>
@@ -26,8 +26,8 @@
           <div class="_30 bottom-pad">
             <div class="big-card-heading">What do you want to do?</div>
           </div>
-          <div class="big-card-actionbox w-clearfix" data-content="Click to download">
-            <div (click)="download()" class="action"><img class="action-img" src="../../assets/images/download.png">
+          <div  class="big-card-actionbox w-clearfix" data-content="Click to download">
+            <div   (click)="download()" class="action"><img  class="action-img" src="../../assets/images/download.png">
               <div>Download Latest</div>
             </div>
             <div class="action"><img class="action-img" src="../../assets/images/edit.png">

@@ -35,7 +35,11 @@
               
          </form>  
 
-         <div class="ui field">
+         <div  *ngIf="!submitted" class="ui field">
           <button  class="ui primary button" (click)="submit(newname.value, desc.value, platform.value, lob.value, status.value )">Create Project</button>
-        </div>    
+        </div>   
+        <div *ngIf="submitted" class="ui active inline loader"></div> 
+
+        
 </div>
+
