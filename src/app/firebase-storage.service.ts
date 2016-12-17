@@ -32,6 +32,13 @@ export class StorageService {
     return false;
   }
 
+  moveFile(oldPath: string, newPath: string) {
+
+    this.dbx.filesMove({from_path: oldPath, to_path: newPath, allow_shared_folder: true, autorename: true})
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  }
+
   downloadFile(projectPath: string) {
 
 

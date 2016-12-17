@@ -14,6 +14,7 @@ export class DetailComponent implements OnInit {
   project: FirebaseObjectObservable<any>;
   title: string = 'download';
   path: string;
+  name: string;
   constructor(private ps: ProjectService, private ss: StorageService) {
 
 
@@ -25,13 +26,15 @@ export class DetailComponent implements OnInit {
 
   sub(project: any) {
     this.project = project;
-    this.project.subscribe(prjkt => this.path = prjkt.path);
+    this.project.subscribe(prjkt => {this.path = prjkt.path; this.name = prjkt.name; } );
   }
 
-  update( name: string, desc: string) {
-
-    this.project.update({name: name, description: desc} );
+  update( newName: string, desc: string) {
+    let newPath = this.path.replace(this.name, newName);
+    this.ss.moveFile(this.path, newPath);
+    this.project.update({name: newName, description: desc, path: newPath} );
   }
+
   ngOnInit() {
     this.ps.getDetail().then(project => this.sub(project));
 
