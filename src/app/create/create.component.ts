@@ -32,7 +32,7 @@ export class CreateComponent implements OnInit {
   }
 
   postPlatformSelection(pf: string) {
-    
+
     this.lobPath = this.ps.getLobPath(pf);
   }
 
@@ -41,7 +41,7 @@ export class CreateComponent implements OnInit {
   }
 
   submit(nam: string, desc: string, platform: string, lob: string, status: string) {
-    
+
 
     this.submitted = true;
 

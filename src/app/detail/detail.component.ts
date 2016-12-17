@@ -27,6 +27,11 @@ export class DetailComponent implements OnInit {
     this.project = project;
     this.project.subscribe(prjkt => this.path = prjkt.path);
   }
+
+  update( name: string, desc: string) {
+
+    this.project.update({name: name, description: desc} );
+  }
   ngOnInit() {
     this.ps.getDetail().then(project => this.sub(project));
 

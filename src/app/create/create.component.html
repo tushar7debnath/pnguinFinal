@@ -2,7 +2,7 @@
 <div class="card-bound">
         <div class="big-card">
           
-            <form>
+            <form *ngIf="!submitted">
               <div class="selection-container w-clearfix">
                 <select (change)="postPlatformSelection(platform.value)" #platform class="slection w-select" >
                   <option value="">Choose Platform</option>
@@ -37,9 +37,13 @@
 
          <div  *ngIf="!submitted" class="ui field">
           <button  class="ui primary button" (click)="submit(newname.value, desc.value, platform.value, lob.value, status.value )">Create Project</button>
-        </div>   
-        <div *ngIf="submitted" class="ui active inline loader"></div> 
-
+        </div>  
+        <div *ngIf="submitted"> 
+        <div  class="ui text active big  inline centered loader"> Uploading, hang on just a little bit longer..</div> 
+          
+        </div>
         
 </div>
+
+
 
