@@ -44,7 +44,7 @@ export class StorageService {
 
     this.dbx.filesGetTemporaryLink({path: projectPath})
     .then(link => window.open(link.link));
-    
+
   }
 
 
