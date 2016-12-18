@@ -58,11 +58,17 @@
               <label>Description</label>
               <input type="text"  #desc  value="{{ (project | async)?.description }}" placeholder="{{ (project | async)?.description }}">
             </div>
+
+            
+            <select #status class="slection w-select">
+                 <option value="{{ (project | async)?.status }}"> Choose Project Status</option>
+                  <option  *ngFor="let sp of statusSelector | async" value={{sp.$key}}>{{sp.$key}}</option>
+                </select>
             
             
             
             
-            <button class="ui button" (click)="update(newname.value, desc.value);myModalNormal.show();" type="submit">Confirm Changes</button>
+            <button class="ui button" (click)="update(newname.value, desc.value,status.value);myModalNormal.show();" type="submit">Confirm Changes</button>
           </form>
          
        
