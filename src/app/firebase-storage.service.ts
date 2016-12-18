@@ -1,36 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from './firebase-project.service';
+import { FirebaseObjectObservable } from 'angularfire2';
 import * as dropbox from 'dropbox';
 
 
 @Injectable()
 export class StorageService {
 
-
+  // configure Dropbox Object with access token
   dbx = new dropbox({ accessToken: 'tEPWkvjaNnAAAAAAAAAE0Si3NQX5ovf3Twl28ZEQYLuy10yxr03Kff15UHTFiXEI' });
 
-  constructor(public router: Router, private ps: ProjectService) {
+  constructor(public router: Router, private ps: ProjectService) {}
 
-  }
+  // Upload File Sequence
 
-  routeTo(response: any, nam: string, desc: string, platform: string, lob: string, status ) {
+  routeTo(response: any, nam: string, desc: string, platform: string, lob: string, status: string ) {
 
-
-    this.router.navigate(['/listing']);
-    let path: string = response.path_lower;
-    this.ps.createProject(nam, desc, platform, lob, status, path );
+    let path: string = response.path_lower; // set value of Path to be called during createProject()
+    this.ps.createProject(nam, desc, platform, lob, status, path ); // Initiate Create Project from Firebase-project Service
+    this.router.navigate(['/listing']); // navigate to listing page
 
   }
 
 
   uploadFile(file: File, nam: string, desc: string,  platform: string, lob: string, status: string) {
 
-  this.dbx.filesUpload({ path: '/' + platform + '/' + lob + '/' +  nam + 'v1' + '.sketch', contents: file })
+  let path = '/' + platform + '/' + lob + '/' +  nam + '/' + nam + '_v1' + '.sketch'; // create paths string
+
+  // start upload sequence
+
+  this.dbx.filesUpload({ path: path , contents: file })
+  // call routeTo for routing to listing and also creating project in firebase
     .then(response => this.routeTo(response, nam , desc, platform, lob , status))
-      .catch(function (error) { console.error(error); });
-    return false;
+    .catch(function (error) { console.error(error); });
   }
+
+
+
+  // move file sequence
 
   moveFile(oldPath: string, newPath: string) {
 
@@ -39,11 +47,24 @@ export class StorageService {
     .catch(err => console.log(err));
   }
 
+
+
+// download file sequence
+
   downloadFile(projectPath: string) {
 
 
     this.dbx.filesGetTemporaryLink({path: projectPath})
     .then(link => window.open(link.link));
+
+  }
+
+updateVersion(prj: FirebaseObjectObservable<any> , file: File, filePath: string, version: string ) {
+
+ this.dbx.filesUpload({ path: filePath , contents: file })
+ .then(res => {this.ps.updateProject(prj, filePath, version); console.log(res); })
+  .catch(err => console.log(err));
+ ;
 
   }
 

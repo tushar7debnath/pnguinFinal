@@ -33,7 +33,7 @@
             <div (click)="myModalNormal.show()" class="action"><img class="action-img" src="../../assets/images/edit.png">
               <div>Edit Project Details</div>
             </div>
-            <div class="action"><img class="action-img" src="../../assets/images/upload.png">
+            <div (click)=" updateVerModal.show();" class="action"><img class="action-img" src="../../assets/images/upload.png">
               <div>Update Version</div>
             </div>
           </div>
@@ -69,6 +69,23 @@
             
             
             <button class="ui button" (click)="update(newname.value, desc.value,status.value);myModalNormal.show();" type="submit">Confirm Changes</button>
+          </form>
+         
+       
+   </modal-content>
+   
+</sm-modal>
+
+
+<sm-modal #updateVerModal>
+    <modal-content>
+        <form>
+          <div class="ui field" style="margin-bottom: 20px">
+              <input type="file"  (change)="handleUpload($event)" placeholder="Upload file..."/>
+            </div>
+            
+            
+            <button class="ui button" (click)="updateVersion(); updateVerModal.show();" type="submit">Confirm Changes</button>
           </form>
          
        

@@ -102,12 +102,18 @@ export class ProjectService {
             creator: this.uid,
             creatorName: this.userName,
             status: status,
-            currentVersion: 'v1',
+            currentVersion: '1',
             path: path,
 
         });
 
 
+    }
+
+    updateProject(prj: FirebaseObjectObservable<any>, path: string, version: string ) {
+        
+
+        prj.update({path: path, currentVersion: version});
     }
 
 }

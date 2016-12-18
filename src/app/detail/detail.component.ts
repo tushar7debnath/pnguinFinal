@@ -15,7 +15,9 @@ export class DetailComponent implements OnInit {
   title: string = 'download';
   path: string;
   name: string;
-  statusSelector: FirebaseListObservable<any>
+  version: string;
+  statusSelector: FirebaseListObservable<any>;
+  uploadedFile: File;
   constructor(private ps: ProjectService, private ss: StorageService) {
 
 this.statusSelector = this.ps.getstatusPath();
@@ -27,13 +29,30 @@ this.statusSelector = this.ps.getstatusPath();
 
   sub(project: any) {
     this.project = project;
-    this.project.subscribe(prjkt => {this.path = prjkt.path; this.name = prjkt.name; } );
+    this.project.subscribe(prjkt => {this.path = prjkt.path; this.name = prjkt.name; this.version = prjkt.currentVersion; } );
   }
 
   update( newName: string, desc: string, status: string) {
     let newPath = this.path.replace(this.name, newName);
     this.ss.moveFile(this.path, newPath);
     this.project.update({name: newName, description: desc, path: newPath, status: status} );
+  }
+  handleUpload(fileInput: any): void {
+    this.uploadedFile = fileInput.target.files[0];
+  }
+
+  updateVersion() {
+    let ver: number = parseInt(this.version, 10);
+    let vers: string = ver.toString();
+    let newvers = (ver + 1).toString();
+    this.path = this.path.replace(vers , newvers);
+    console.log(ver);
+    console.log(newvers);
+    this.ss.updateVersion(this.project, this.uploadedFile, this.path, newvers);
+
+
+
+
   }
 
   ngOnInit() {
