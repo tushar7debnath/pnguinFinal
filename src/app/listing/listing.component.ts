@@ -34,7 +34,15 @@ export class ListingComponent implements OnInit {
     if (st2) {
       return item.filter(it => (it.platform === st1 && it.lob === st2));
     } else {
-      return item.filter(it => (it.platform === st1));
+
+
+      if (st1 === 'platform') {
+        return this.Project = this.ps.getProjects();
+      } else {
+
+        return item.filter(it => (it.platform === st1));
+      }
+
     }
 
   }
@@ -65,11 +73,13 @@ export class ListingComponent implements OnInit {
     this.filterThis(pf, lp);
   }
   searchIT(itm: any, q: string) {
+
     return itm.filter(it => (it.name.toLowerCase().startsWith(q)));
   }
 
 
   search(query: string) {
+    this.Project = this.ps.getProjects();
     this.Project = this.Project
       .map(items => this.searchIT(items, query)
       ) as FirebaseListObservable<any[]>;

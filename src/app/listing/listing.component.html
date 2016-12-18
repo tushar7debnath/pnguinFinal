@@ -8,7 +8,7 @@
 
   
     <select #platform (change)="postPlatformSelection(platform.value)"  class="ui dropdown dd">
-  <option value="">Platform</option>
+  <option value="platform">Platform</option>
  <option  *ngFor="let pp of platformPath | async" value={{pp.$key}}>{{pp.$key}}</option>
 </select>
 <select #lob (change)="postLobSelection(platform.value,lob.value)"  class="ui dropdown dd">
