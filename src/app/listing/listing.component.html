@@ -29,13 +29,13 @@
           <div class="card-main" (click)="viewDetail(projkt.$key)">
             <div class="w-clearfix">
               <div class="head-sub-container">
-                <div class="card-heading">{{projkt.name }}</div>
+                <div class="card-heading">{{projkt.name  | truncate : 18 }}</div>
                 <div class="card-sub">{{projkt.lob}} {{projkt.flow}}</div>
               </div>
               <div class="card-platform">{{projkt.platform}}</div>
             </div>
             <div class="card-description">
-              <div>{{projkt.description}}</div>
+              <div>{{projkt.description| truncate : 75}}</div>
             </div>
             <div>
 <div class="divider"></div>

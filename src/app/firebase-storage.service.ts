@@ -9,7 +9,7 @@ import * as dropbox from 'dropbox';
 export class StorageService {
 
   // configure Dropbox Object with access token
-  dbx = new dropbox({ accessToken: 'tEPWkvjaNnAAAAAAAAAE0Si3NQX5ovf3Twl28ZEQYLuy10yxr03Kff15UHTFiXEI' });
+  dbx = new dropbox({ accessToken: 'rFe9OLGwWmAAAAAAAAAIOmT-CA3P-VAJsIelVVxPNpPikalReScI81URWr3FXWtU' });
 
   constructor(public router: Router, private ps: ProjectService) {}
 
@@ -26,11 +26,11 @@ export class StorageService {
 
   uploadFile(file: File, nam: string, desc: string,  platform: string, lob: string, status: string) {
 
-  let path = '/' + platform + '/' + lob + '/' +  nam + '/' + nam + '_v1' + '.sketch'; // create paths string
+
 
   // start upload sequence
 
-  this.dbx.filesUpload({ path: path , contents: file })
+  this.dbx.filesUpload({ path: '/' + platform + '/' + lob + '/' +  nam + '/' + nam + '_v1' + '.sketch', contents: file })
   // call routeTo for routing to listing and also creating project in firebase
     .then(response => this.routeTo(response, nam , desc, platform, lob , status))
     .catch(function (error) { console.error(error); });
@@ -41,7 +41,7 @@ export class StorageService {
   // move file sequence
 
   moveFile(oldPath: string, newPath: string) {
-
+   
     this.dbx.filesMove({from_path: oldPath, to_path: newPath, allow_shared_folder: true, autorename: true})
     .then(res => console.log(res))
     .catch(err => console.log(err));
@@ -62,7 +62,7 @@ export class StorageService {
 updateVersion(prj: FirebaseObjectObservable<any> , file: File, filePath: string, version: string ) {
 
  this.dbx.filesUpload({ path: filePath , contents: file })
- .then(res => {this.ps.updateProject(prj, filePath, version); console.log(res); })
+ .then(res => {this.ps.updateProject(prj, filePath, version); console.log(res); this.router.navigate(['/listing']); })
   .catch(err => console.log(err));
  ;
 

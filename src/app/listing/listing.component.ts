@@ -74,7 +74,7 @@ export class ListingComponent implements OnInit {
   }
   searchIT(itm: any, q: string) {
 
-    return itm.filter(it => (it.name.toLowerCase().startsWith(q)));
+    return itm.filter(it => (it.name.toLowerCase().includes(q)));
   }
 
 
