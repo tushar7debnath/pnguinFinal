@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 import { NgSemanticModule } from 'ng-semantic';
+import { TruncatePipe } from 'angular2-truncate';
 
 
 
@@ -27,10 +28,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyD33nBzmA5qurJCXQgAsXwz6Ac8mUiZX9M',
-  authDomain: 'project-penguin-c1419.firebaseapp.com',
-  databaseURL: 'https://project-penguin-c1419.firebaseio.com',
-  storageBucket: 'project-penguin-c1419.appspot.com'
+  apiKey: 'AIzaSyDQfOuLo9dSIGFLgQ4G0YxRZPZaLqWy1Kw',
+  authDomain: 'teambase-c702d.firebaseapp.com',
+  databaseURL: 'https://teambase-c702d.firebaseio.com',
+  storageBucket: 'teambase-c702d.appspot.com'
 };
 
 const myFirebaseAuthConfig = {
@@ -41,6 +42,7 @@ const myFirebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    TruncatePipe,
     LoginComponent,
     ListingComponent,
     NavComponent,

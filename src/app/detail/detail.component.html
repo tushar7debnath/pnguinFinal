@@ -1,6 +1,9 @@
 <app-nav ></app-nav>
 
-
+ <div *ngIf="submitted"> 
+        <div  class="ui text active big  inline centered loader"> Uploading, hang on just a little bit longer..</div> 
+          
+ </div>
       <div class="card-bound">
         <div class="big-card">
           <div class="bottom-pad">
@@ -85,8 +88,9 @@
             </div>
             
             
-            <button class="ui button" (click)="updateVersion(); updateVerModal.show();" type="submit">Confirm Changes</button>
+            <button *ngIf="!submitted" class="ui button" (click)="updateVersion(); updateVerModal.show();" type="submit">Confirm Changes</button>
           </form>
+         
          
        
    </modal-content>

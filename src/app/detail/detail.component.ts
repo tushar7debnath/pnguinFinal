@@ -18,6 +18,7 @@ export class DetailComponent implements OnInit {
   version: string;
   statusSelector: FirebaseListObservable<any>;
   uploadedFile: File;
+  submitted: boolean = false;
   constructor(private ps: ProjectService, private ss: StorageService) {
 
 this.statusSelector = this.ps.getstatusPath();
@@ -42,6 +43,7 @@ this.statusSelector = this.ps.getstatusPath();
   }
 
   updateVersion() {
+    this.submitted = true;
     let ver: number = parseInt(this.version, 10);
     let vers: string = ver.toString();
     let newvers = (ver + 1).toString();
