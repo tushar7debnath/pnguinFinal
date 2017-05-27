@@ -28,10 +28,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyDQfOuLo9dSIGFLgQ4G0YxRZPZaLqWy1Kw',
-  authDomain: 'teambase-c702d.firebaseapp.com',
-  databaseURL: 'https://teambase-c702d.firebaseio.com',
-  storageBucket: 'teambase-c702d.appspot.com'
+  apiKey: 'AIzaSyCPsDWB1FfTggY7FocmZ1pwTDwnTLmA18c',
+  authDomain: 'project7penguin-c586c.firebaseapp.com',
+  databaseURL: 'https://project7penguin-c586c.firebaseio.com',
+  storageBucket: 'project7penguin-c586c.appspot.com'
 };
 
 const myFirebaseAuthConfig = {
